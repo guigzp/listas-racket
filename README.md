@@ -1,1 +1,1 @@
-# Listas de exercício de PPLF - Racket
+# Listas de exercícios de PPLF - Racket
