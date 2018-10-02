@@ -51,16 +51,19 @@
 ; Número, Número -> Número
 ; Conta quantos números primos existem no intervalo passado
 (define (conta_primos x y)
-  (define (primo? x)
-    (define lista (for/list ([n (in-range 2 (+ 1 (/ x 2)))] )n))
-    (define lista2 (map (λ (n) (remainder x n)) lista))
-    (cond [ (or (= 1 x) (= 0 x)) #f]
-          [(false? (memf (λ (n) (= n 0)) lista2)) #t]
-          [else #f]))
-  (define intervalo (for/list ([n (in-range x (+ 1 y))] )n))
+  (define (primo? n acc)
+    (cond [(= n 2) #t]
+          [(= n acc) #f]
+          [(zero? (remainder n acc)) #t]
+          [else (primo? n (add1 acc))]))
+  (define intervalo (for/list ([n (in-range x y)] )n))
   (define (verifica_primo lst)
     (cond [(empty? lst) 0]
-          [(false? (primo? (first lst))) (verifica_primo (rest lst))]
+          [(false? (primo? (first lst) 2)) (verifica_primo (rest lst))]
           [else (+ 1 (verifica_primo (rest lst)))]))
   (verifica_primo intervalo))
+
+
+
+  
   
