@@ -57,10 +57,12 @@
 ; Exercício 4
 ; Lista -> Lista
 ; Função que recebe uma lista e retorna a mesma com os elementos invertidos
-(define (inverte lst lst2)
-  (cond [(empty? lst) lst2]
-        [else
-         (inverte (rest lst) (addend (first lst) lst2))]))
+(define (inverte lst)
+  (define (remove_ultimo lst)
+    (cond [(empty? (rest lst)) empty]
+          [else (cons (first lst) (remove_ultimo (rest lst)))]))
+  (cond [(empty? lst) empty]
+        [else (cons (last lst) (inverte (remove_ultimo lst)))]))
 
 ; Exercício 5
 ; Lista -> Booleano
@@ -107,6 +109,22 @@
   (cond [(empty? lst) (list x)]
         [(> x (first lst)) (cons (first lst) (inserecrescente x (rest lst)))]
         [(cons x (cons (first lst) (rest lst)))]))
+
+; Exercício 11
+(define (ordena_lista lst)
+  (cond [(empty? lst) empty]
+        [else (cons 
+
+
+; Exercício 13
+; Lista de Listas -> Lista de Listas
+; Função que recebe uma lista de listas e devolve em ordem reversa
+(define (inverte* lst)
+  (define (remove_ultimo lst)
+    (cond [(empty? (rest lst)) empty]
+          [else (cons (first lst) (remove_ultimo (rest lst)))]))
+  (cond [(empty? lst) empty]
+        [else (cons (last lst) (inverte* (remove_ultimo lst)))]))
 
 ; Exercício 15
 ; Numero, Arvore Binária -> Arvore Binária
