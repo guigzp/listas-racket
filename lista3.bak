@@ -60,13 +60,7 @@
 (define (inverte lst lst2)
   (cond [(empty? lst) lst2]
         [else
-         (inverte (rest lst) (addend (first lst) lst2))]))
-
-; Exercício 5
-; Lista -> Booleano
-; Função que veririca se uma lista é um palíndromo
-(define (palindromo lst)
-  (equal? lst (reverse lst)))
+         (addend (first lst) lst2) (inverte (rest lst) lst2)]))
 
 ; Exercício 6
 ; Numero, Lista -> Lista
@@ -91,14 +85,6 @@
   (cond [(empty? lst) (error "A lista está vazia")]
         [(empty? (rest lst)) (first lst)]
         [(ultimotermo (rest lst))]))
-
-; Exercício 9
-; Lista -> Numero
-; Função que recebe uma lista e devolve o maior termo
-(define (maior_numero lst)
-  (cond [(empty? (rest lst)) (first lst)]
-        [else (max (first lst) (maior_numero (rest lst)))]))
-
 
 ; Exercício 10
 ; Numero, Lista -> Lista
